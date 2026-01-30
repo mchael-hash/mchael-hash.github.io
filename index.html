@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>National Digital Literacy Initiative | Omarion's Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      padding: 40px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo-container {
+      display: inline-block;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .logo {
+      width: 180px;
+      height: 180px;
+      filter: drop-shadow(0 10px 30px rgba(76, 175, 80, 0.3));
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+    }
+
+    .logo:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    h1 {
+      font-size: 3em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #4CAF50, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 30px 0 10px;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      color: #4CAF50;
+      font-weight: 400;
+      margin-bottom: 10px;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #999;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px 0;
+      animation: fadeIn 1s ease-out 0.8s both;
+    }
+
+    nav a {
+      padding: 14px 32px;
+      background: rgba(76, 175, 80, 0.1);
+      border: 2px solid #4CAF50;
+      color: #2196F3;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(76, 175, 80, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+    }
+
+    nav a:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    nav a:hover {
+      background: rgba(76, 175, 80, 0.2);
+      border-color: #2196F3;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+    }
+
+    section {
+      margin: 60px 0;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .section-title {
+      font-size: 2.2em;
+      color: #fff;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, #4CAF50, #2196F3);
+      border-radius: 2px;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .course-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(76, 175, 80, 0.2);
+      border-radius: 16px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #4CAF50, #2196F3);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .course-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #4CAF50;
+      box-shadow: 0 15px 40px rgba(76, 175, 80, 0.2);
+    }
+
+    .course-name {
+      font-size: 1.3em;
+      color: #2196F3;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .course-code {
+      color: #999;
+      font-size: 0.9em;
+    }
+
+    .table-container {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 40px;
+      border: 1px solid rgba(76, 175, 80, 0.1);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    thead {
+      background: linear-gradient(135deg, #4CAF50, #2196F3);
+    }
+
+    th {
+      padding: 18px 12px;
+      text-align: center;
+      font-weight: 600;
+      color: #000;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    th:first-child {
+      border-radius: 12px 0 0 0;
+    }
+
+    th:last-child {
+      border-radius: 0 12px 0 0;
+    }
+
+    td {
+      padding: 16px 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+      transition: background 0.2s ease;
+    }
+
+    tbody tr {
+      transition: all 0.2s ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(76, 175, 80, 0.05);
+    }
+
+    tfoot tr {
+      background: rgba(76, 175, 80, 0.1);
+      font-weight: 600;
+    }
+
+    tfoot td {
+      padding: 18px 12px;
+      border-bottom: none;
+      color: #4CAF50;
+    }
+
+    .note {
+      margin-top: 25px;
+      padding: 20px;
+      background: rgba(76, 175, 80, 0.05);
+      border-left: 4px solid #4CAF50;
+      border-radius: 8px;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+
+    .meta {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+      font-size: 0.85em;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .section-title {
+        font-size: 1.8em;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .table-container {
+        padding: 15px;
+      }
+
+      th, td {
+        padding: 12px 8px;
+        font-size: 0.85em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+  
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        <img src="logo.png" alt="National Digital Literacy Initiative logo" class="logo">
+      </div>
+      <h1>National Digital Literacy Initiative</h1>
+      <h2>2026 Training Program Dashboard</h2>
+      <div class="subtitle"><strong>Public Dashboard by Omarion</strong></div>
+    </header>
+
+    <nav>
+      <a href="email.html">Email Contact</a>
+      <a href="statistics.html">National Statistics</a>
+    </nav>
+
+    <section>
+      <h3 class="section-title">Courses Offered</h3>
+      <div class="courses-grid">
+        <div class="course-card">
+          <div class="course-name">Cyber Basics</div>
+          <div class="course-code">CB</div>
+        </div>
+        <div class="course-card">
+          <div class="course-name">Coding Fundamentals</div>
+          <div class="course-code">CF</div>
+        </div>
+        <div class="course-card">
+          <div class="course-name">Digital Marketing Essentials</div>
+          <div class="course-code">DME</div>
+        </div>
+        <div class="course-card">
+          <div class="course-name">AI & Data Literacy</div>
+          <div class="course-code">ADL</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section-title">Enrollment & Graduates by Parish and Course</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Parish</th>
+              <th>Course</th>
+              <th>Total Enrollees</th>
+              <th>Successful Graduates</th>
+              <th>Success Rate %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Kingston</td><td>AI & Data Literacy</td><td>14,025</td><td>5,610</td><td>40.0</td></tr>
+            <tr><td>Kingston</td><td>Coding Fundamentals</td><td>14,025</td><td>2,805</td><td>20.0</td></tr>
+            <tr><td>Kingston</td><td>Cyber Basics</td><td>14,025</td><td>1,403</td><td>10.0</td></tr>
+            <tr><td>Kingston</td><td>Digital Marketing Essentials</td><td>14,025</td><td>4,208</td><td>30.0</td></tr>
+            <tr><td>Mandeville</td><td>AI & Data Literacy</td><td>5,775</td><td>2,310</td><td>40.0</td></tr>
+            <tr><td>Mandeville</td><td>Coding Fundamentals</td><td>5,775</td><td>1,155</td><td>20.0</td></tr>
+            <tr><td>Mandeville</td><td>Cyber Basics</td><td>5,775</td><td>578</td><td>10.0</td></tr>
+            <tr><td>Mandeville</td><td>Digital Marketing Essentials</td><td>5,775</td><td>1,733</td><td>30.0</td></tr>
+            <tr><td>Montego Bay</td><td>AI & Data Literacy</td><td>8,250</td><td>3,300</td><td>40.0</td></tr>
+            <tr><td>Montego Bay</td><td>Coding Fundamentals</td><td>8,250</td><td>1,650</td><td>20.0</td></tr>
+            <tr><td>Montego Bay</td><td>Cyber Basics</td><td>8,250</td><td>825</td><td>10.0</td></tr>
+            <tr><td>Montego Bay</td><td>Digital Marketing Essentials</td><td>8,250</td><td>2,475</td><td>30.0</td></tr>
+            <tr><td>Negril</td><td>AI & Data Literacy</td><td>15,145</td><td>6,058</td><td>40.0</td></tr>
+            <tr><td>Negril</td><td>Coding Fundamentals</td><td>15,145</td><td>3,029</td><td>20.0</td></tr>
+            <tr><td>Negril</td><td>Cyber Basics</td><td>15,145</td><td>1,515</td><td>10.0</td></tr>
+            <tr><td>Negril</td><td>Digital Marketing Essentials</td><td>15,145</td><td>4,544</td><td>30.0</td></tr>
+            <tr><td>Ocho Rios</td><td>AI & Data Literacy</td><td>24,268</td><td>9,707</td><td>40.0</td></tr>
+            <tr><td>Ocho Rios</td><td>Coding Fundamentals</td><td>24,268</td><td>4,854</td><td>20.0</td></tr>
+            <tr><td>Ocho Rios</td><td>Cyber Basics</td><td>24,268</td><td>2,427</td><td>10.0</td></tr>
+            <tr><td>Ocho Rios</td><td>Digital Marketing Essentials</td><td>24,268</td><td>7,280</td><td>30.0</td></tr>
+            <tr><td>Port Antonio</td><td>AI & Data Literacy</td><td>27,000</td><td>10,800</td><td>40.0</td></tr>
+            <tr><td>Port Antonio</td><td>Coding Fundamentals</td><td>27,000</td><td>5,400</td><td>20.0</td></tr>
+            <tr><td>Port Antonio</td><td>Cyber Basics</td><td>27,000</td><td>2,700</td><td>10.0</td></tr>
+            <tr><td>Port Antonio</td><td>Digital Marketing Essentials</td><td>27,000</td><td>8,100</td><td>30.0</td></tr>
+            <tr><td>Port Royal</td><td>AI & Data Literacy</td><td>18,550</td><td>7,420</td><td>40.0</td></tr>
+            <tr><td>Port Royal</td><td>Coding Fundamentals</td><td>18,550</td><td>3,710</td><td>20.0</td></tr>
+            <tr><td>Port Royal</td><td>Cyber Basics</td><td>18,550</td><td>1,855</td><td>10.0</td></tr>
+            <tr><td>Port Royal</td><td>Digital Marketing Essentials</td><td>18,550</td><td>5,565</td><td>30.0</td></tr>
+            <tr><td>Spanish Town</td><td>AI & Data Literacy</td><td>13,275</td><td>5,310</td><td>40.0</td></tr>
+            <tr><td>Spanish Town</td><td>Coding Fundamentals</td><td>13,275</td><td>2,655</td><td>20.0</td></tr>
+            <tr><td>Spanish Town</td><td>Cyber Basics</td><td>13,275</td><td>1,328</td><td>10.0</td></tr>
+            <tr><td>Spanish Town</td><td>Digital Marketing Essentials</td><td>13,275</td><td>3,983</td><td>30.0</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">Totals</td>
+              <td>505,150</td>
+              <td>126,288</td>
+              <td>25.0</td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="note">
+          <strong>Note:</strong> Data compiled from Training Data 2.0 worksheet. Success Rate % = Graduates ÷ Enrollees × 100. Each parish offers all four courses to maximize digital literacy across the nation.
+        </div>
+        <div class="meta">
+          Source file: EduTech_2026_Omarion.xlsx | Generated: January 30, 2026
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

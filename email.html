@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact Us - National Digital Literacy Initiative</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 10px 30px rgba(76, 175, 80, 0.3));
+      animation: fadeInDown 0.8s ease-out;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #4CAF50, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .email-box {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(76, 175, 80, 0.2);
+      border-radius: 16px;
+      padding: 40px;
+      margin: 30px 0;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+      transition: all 0.3s ease;
+    }
+
+    .email-box:hover {
+      border-color: #4CAF50;
+      box-shadow: 0 15px 40px rgba(76, 175, 80, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .email-link {
+      font-size: 1.5em;
+      color: #2196F3;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .email-link:hover {
+      color: #4CAF50;
+      transform: scale(1.05);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 28px;
+      background: rgba(76, 175, 80, 0.1);
+      border: 2px solid #4CAF50;
+      color: #2196F3;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      animation: fadeIn 1s ease-out 0.6s both;
+    }
+
+    .back-link:hover {
+      background: rgba(76, 175, 80, 0.2);
+      border-color: #2196F3;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .email-link {
+        font-size: 1.2em;
+      }
+
+      .email-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+  
+  <div class="container">
+    <img src="logo.png" alt="NDLI Logo" class="logo">
+    <h1>Contact Us</h1>
+    
+    <div class="email-box">
+      <a href="mailto:omarion@digitalliteracy.gov" class="email-link">omarion@digitalliteracy.gov</a>
+    </div>
+    
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>
